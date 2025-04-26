@@ -16,7 +16,7 @@ import login from "./api_Routes/GET/login.js";
 import dashboard from "./api_Routes/GET/dashboard.js";
 import verify from "./api_Routes/GET/verify_token.js";
 import logout from "./api_Routes/GET/logout.js";
-import addProgram from "./api_Routes/GET/addProgram.js";
+import addProgram from "./api_Routes/GET/addprogram.js";
 import clientRegister from "./api_Routes/GET/clientRegister.js";
 import programEnroll from "./api_Routes/GET/programEnroll.js";
 import forgotPassword from "./api_Routes/GET/forgot_password.js";
