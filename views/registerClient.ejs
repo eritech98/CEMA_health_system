@@ -1,0 +1,55 @@
+<%- include('partials/registerClient/registerheader') %>
+
+<body>
+  <header class="header">
+    <a href="/dashboard" class="back-button">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+      </svg>
+      Back to Dashboard
+    </a>
+   
+    <div style="width: 100px;"></div> <!-- Spacer for centering -->
+  </header>
+
+  <div class="container">
+    <div class="card">
+      <div class="card-header">
+        <h2>Register New Client</h2>
+        <p>Enter the client's information below</p>
+      </div>
+
+      <form method="POST" action="/clients/register_post">
+        <div class="input-group">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+          </svg>
+          <input name="full_name" placeholder="Full Name" required />
+        </div>
+
+        <div class="input-group">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+          </svg>
+          <input type="email" name="email" placeholder="Email" required />
+        </div>
+
+        <div class="input-group">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+          </svg>
+          <input name="phone" placeholder="Phone" required />
+        </div>
+
+        <button type="submit">Register Client</button>
+      </form>
+    </div>
+
+    <div class="footer">
+      <p>Need help? <a href="/support">Contact Support</a></p>
+    </div>
+  </div>
+</body>
+<%- include('partials/registerClient/registerfooter') %>
+
+

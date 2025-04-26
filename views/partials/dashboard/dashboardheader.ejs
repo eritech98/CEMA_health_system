@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    :root {
+      --primary: #4a90e2;
+      --primary-dark: #3a7bc8;
+      --danger: #e74c3c;
+      --danger-dark: #c0392b;
+      --success: #2ecc71;
+      --text: #333;
+      --text-light: #666;
+      --border: #e1e1e1;
+      --bg-light: #f9fafb;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      --shadow-hover: 0 10px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    body {
+      background-color: var(--bg-light);
+      color: var(--text);
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 250px 1fr;
+      grid-template-rows: auto 1fr auto;
+      grid-template-areas:
+        "sidebar header"
+        "sidebar main"
+        "sidebar footer";
+      overflow: hidden;
+    }
+
+    .header {
+      grid-area: header;
+      background-color: white;
+      padding: 20px 30px;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 10;
+      position: sticky;
+      top: 0;
+    }
+
+    .header h1 {
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .mobile-menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 5px;
+    }
+
+    .mobile-menu-toggle svg {
+      width: 24px;
+      height: 24px;
+      fill: var(--text);
+    }
+
+    .search-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .search-container input {
+      padding: 8px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      margin-right: 10px;
+    }
+
+    .search-container button {
+      padding: 8px 16px;
+      background-color: var(--primary);
+      border: none;
+      border-radius: 4px;
+      color: white;
+      cursor: pointer;
+    }
+
+    .search-container button:hover {
+      background-color: var(--primary-dark);
+    }
+
+    .sidebar {
+      grid-area: sidebar;
+      background-color: white;
+      box-shadow: var(--shadow);
+      padding: 30px 0;
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid var(--border);
+      z-index: 20;
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 250px;
+      overflow-y: auto;
+    }
+
+    .sidebar-logo {
+      display: flex;
+      align-items: center;
+      padding: 0 20px 30px 20px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .sidebar-logo svg {
+      width: 40px;
+      height: 40px;
+      fill: var(--primary);
+      margin-right: 10px;
+    }
+
+    .sidebar-logo h2 {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .sidebar-menu {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .menu-section {
+      margin-bottom: 20px;
+    }
+
+    .menu-section-title {
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-light);
+      padding: 10px 20px;
+      letter-spacing: 1px;
+    }
+
+    .menu-item {
+      display: flex;
+      align-items: center;
+      padding: 12px 20px;
+      color: var(--text);
+      text-decoration: none;
+      transition: all 0.3s;
+      border-left: 3px solid transparent;
+    }
+
+    .menu-item:hover {
+      background-color: var(--bg-light);
+      border-left-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .menu-item svg {
+      width: 18px;
+      height: 18px;
+      margin-right: 10px;
+    }
+
+    .menu-item.danger {
+      color: var(--danger);
+    }
+
+    .menu-item.danger:hover {
+      background-color: #fff8f8;
+      border-left-color: var(--danger);
+    }
+
+    .creator-info {
+      padding: 15px 20px;
+      margin-top: auto;
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--text-light);
+    }
+
+    .creator-info p {
+      margin-bottom: 5px;
+    }
+
+    .creator-info a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .creator-info a:hover {
+      text-decoration: underline;
+    }
+
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: white;
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+      z-index: 100;
+    }
+
+    .mobile-nav-menu {
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0;
+    }
+
+    .mobile-nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 12px;
+      padding: 8px;
+      border-radius: 8px;
+      transition: all 0.3s;
+    }
+
+    .mobile-nav-item:hover, .mobile-nav-item:active {
+      color: var(--primary);
+      background-color: var(--bg-light);
+    }
+
+    .mobile-nav-item svg {
+      width: 24px;
+      height: 24px;
+      margin-bottom: 5px;
+    }
+
+    .mobile-nav-item.danger {
+      color: var(--danger);
+    }
+
+    .mobile-nav-item.danger:hover {
+      color: var(--danger-dark);
+    }
+
+    .mobile-drawer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+    }
+
+    .mobile-drawer.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .mobile-drawer-content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 80%;
+      max-width: 300px;
+      height: 100%;
+      background-color: white;
+      box-shadow: var(--shadow);
+      transform: translateX(-100%);
+      transition: transform 0.3s;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mobile-drawer.active .mobile-drawer-content {
+      transform: translateX(0);
+    }
+
+    .mobile-drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .mobile-drawer-close {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 5px;
+    }
+
+    .mobile-drawer-close svg {
+      width: 24px;
+      height: 24px;
+      fill: var(--text);
+    }
+
+    .main-content {
+      grid-area: main;
+      padding: 30px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    .content-wrapper {
+      flex: 1;
+      overflow-y: auto;
+      padding-bottom: 150px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      min-height: 20px;
+    }
+
+    .section-header h2 {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .clients-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+      min-height: 300px;
+    }
+
+    .client-card {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      padding: 20px;
+      transition: all 0.3s;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .client-card:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-5px);
+    }
+
+    .client-info {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .client-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+      color: white;
+      font-weight: 600;
+      font-size: 18px;
+    }
+
+    .client-avatar img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .client-details {
+      flex: 1;
+    }
+
+    .client-name {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--primary);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .client-phone {
+      color: var(--text-light);
+      font-size: 14px;
+    }
+
+    .client-actions {
+      margin-top: auto;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .client-actions button {
+      background-color: transparent;
+      border: none;
+      color: var(--danger);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      padding: 5px 10px;
+      border-radius: 4px;
+      transition: all 0.3s;
+      z-index: 2;
+    }
+
+    .client-actions button:hover {
+      background-color: #fff8f8;
+    }
+
+    .client-actions button svg {
+      width: 16px;
+      height: 16px;
+      margin-right: 5px;
+    }
+
+    .client-card-link {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    .no-clients-message {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      grid-column: 1 / -1;
+      padding: 40px 0;
+      text-align: center;
+      min-height: 400px;
+      margin: auto;
+    }
+
+    .no-clients-message svg {
+      width: 80px;
+      height: 80px;
+      fill: var(--text-light);
+      margin-bottom: 20px;
+      opacity: 0.7;
+    }
+
+    .no-clients-message h3 {
+      font-size: 20px;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+
+    .no-clients-message p {
+      color: var(--text-light);
+      max-width: 400px;
+    }
+
+    .pagination-container {
+      padding: 20px 0;
+      border-top: 1px solid var(--border);
+      background-color: var(--bg-light);
+      z-index: 50;
+      margin-top: 20px;
+      display: block;
+      position: relative;
+    }
+
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      padding: 5px 0 10px 0;
+    }
+
+    .pagination button {
+      background-color: white;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 8px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-bottom: 5px;
+      min-width: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .pagination button:hover {
+      background-color: var(--bg-light);
+    }
+      
+      .no-clients-image {
+  width: 150px; /* adjust size */
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+
+    .pagination button.active {
+      background-color: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .pagination button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .footer {
+      grid-area: footer;
+      padding: 15px 30px;
+      background-color: white;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-light);
+    }
+
+    @media (max-width: 768px) {
+      body {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "header"
+          "main"
+          "footer";
+      }
+
+      .sidebar {
+        display: none;
+      }
+
+      .header {
+        padding: 15px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+      }
+
+      .mobile-menu-toggle {
+        display: block;
+      }
+
+      .main-content {
+        padding: 15px;
+        margin-top: 70px;
+        height: calc(100vh - 70px);
+      }
+
+      .clients-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .mobile-nav {
+        display: block;
+      }
+
+      .content-wrapper {
+        padding-top: 30px;
+        padding-bottom: 200px;
+      }
+
+      .pagination-container {
+        position: fixed;
+        bottom: 70px;
+        left: 0;
+        right: 0;
+        padding: 15px;
+        background-color: var(--bg-light);
+        box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
+        z-index: 90;
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .pagination {
+        padding: 5px 0;
+      }
+
+      .pagination button {
+        padding: 8px 10px;
+        font-size: 14px;
+        min-width: 36px;
+        height: 36px;
+      }
+
+      .footer {
+        display: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .search-container {
+        flex: 1;
+        margin: 0 10px;
+      }
+
+      .search-container input {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .header h1 {
+        font-size: 20px;
+      }
+
+      .pagination-container {
+        bottom: 75px;
+        padding: 10px;
+      }
+
+      .pagination {
+        gap: 5px;
+      }
+
+      .pagination button {
+        padding: 6px 8px;
+        font-size: 13px;
+        min-width: 32px;
+        height: 32px;
+      }
+    }
+  </style>
+     <script>
+    let allClients = [];
+    let currentPage = 1;
+    const itemsPerPage = 6;
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const clientCards = document.querySelectorAll('.client-card');
+      allClients = Array.from(clientCards);
+
+      if (allClients.length > 0) {
+        setupPagination(allClients);
+        showPage(1, allClients);
+      } else {
+        document.getElementById('noClientsMessage').style.display = 'flex';
+      }
+
+      const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+      const mobileDrawer = document.getElementById('mobile-drawer');
+      const mobileDrawerClose = document.getElementById('mobile-drawer-close');
+
+      if (mobileMenuToggle && mobileDrawer && mobileDrawerClose) {
+        mobileMenuToggle.addEventListener('click', function() {
+          mobileDrawer.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        });
+
+        mobileDrawerClose.addEventListener('click', function() {
+          mobileDrawer.classList.remove('active');
+          document.body.style.overflow = '';
+        });
+
+        mobileDrawer.addEventListener('click', function(e) {
+          if (e.target === mobileDrawer) {
+            mobileDrawer.classList.remove('active');
+            document.body.style.overflow = '';
+          }
+        });
+      }
+
+      const searchInput = document.getElementById('searchInput');
+      if (searchInput) {
+        searchInput.addEventListener('input', function() {
+          searchClient();
+        });
+      }
+
+      const deleteButtons = document.querySelectorAll('.client-actions button');
+      deleteButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+          e.stopPropagation();
+        });
+      });
+
+      generateClientInitials();
+      adjustForMobile();
+      window.addEventListener('resize', adjustForMobile);
+    });
+
+    function adjustForMobile() {
+      const isMobile = window.innerWidth <= 768;
+      const contentWrapper = document.querySelector('.content-wrapper');
+
+      if (isMobile) {
+        contentWrapper.style.paddingBottom = '200px';
+      } else {
+        contentWrapper.style.paddingBottom = '150px';
+      }
+    }
+
+    function generateClientInitials() {
+      const avatars = document.querySelectorAll('.client-avatar');
+      avatars.forEach(avatar => {
+        const name = avatar.getAttribute('data-name');
+        if (name) {
+          const nameParts = name.split(' ');
+          let initials = '';
+
+          if (nameParts.length >= 2) {
+            initials = nameParts[0].charAt(0) + nameParts[nameParts.length - 1].charAt(0);
+          } else if (nameParts.length === 1) {
+            initials = nameParts[0].charAt(0);
+          }
+
+          avatar.textContent = initials.toUpperCase();
+        }
+      });
+    }
+
+    function confirmDelete(clientId, clientName, event) {
+      event.stopPropagation();
+      if (confirm(`Are you sure you want to delete ${clientName} and all their data?`)) {
+        const card = event.target.closest('.client-card');
+        if (card) {
+          const index = allClients.indexOf(card);
+          if (index > -1) {
+            allClients.splice(index, 1);
+          }
+
+          card.remove();
+
+          if (allClients.length === 0) {
+            document.getElementById('noClientsMessage').style.display = 'flex';
+            document.getElementById('pagination-container').style.display = 'none';
+          } else {
+            const totalPages = Math.ceil(allClients.length / itemsPerPage);
+            if (currentPage > totalPages) {
+              currentPage = totalPages;
+            }
+            setupPagination(allClients);
+            showPage(currentPage, allClients);
+          }
+        }
+
+        fetch(`/clients/${clientId}`, { method: 'DELETE' })
+          .then(response => {
+            if (response.ok) window.location.reload();
+            else alert('Failed to delete client');
+          });
+      }
+    }
+
+    function searchClient() {
+      const input = document.getElementById('searchInput').value.toLowerCase().trim();
+      const clientsGrid = document.getElementById('clientsGrid');
+      const noClientsMessage = document.getElementById('noClientsMessage');
+      const paginationContainer = document.getElementById('pagination-container');
+
+      if (input === '') {
+        setupPagination(allClients);
+        showPage(1, allClients);
+        noClientsMessage.style.display = 'none';
+        if (paginationContainer) paginationContainer.style.display = 'block';
+        return;
+      }
+
+      const filteredClients = allClients.filter(card => {
+        const name = card.querySelector('.client-name').textContent.toLowerCase();
+        const phone = card.querySelector('.client-phone')?.textContent.toLowerCase() || '';
+        return name.includes(input) || phone.includes(input);
+      });
+
+      allClients.forEach(card => {
+        card.style.display = 'none';
+      });
+
+      if (filteredClients.length > 0) {
+        filteredClients.forEach(card => {
+          card.style.display = '';
+        });
+        noClientsMessage.style.display = 'none';
+
+        setupPagination(filteredClients);
+        showPage(1, filteredClients);
+        if (paginationContainer) paginationContainer.style.display = 'block';
+      } else {
+        noClientsMessage.style.display = 'flex';
+        if (paginationContainer) paginationContainer.style.display = 'none';
+      }
+    }
+
+    function setupPagination(clients) {
+      const paginationContainer = document.getElementById('pagination');
+      if (!paginationContainer) return;
+
+      paginationContainer.innerHTML = '';
+
+      const totalPages = Math.ceil(clients.length / itemsPerPage);
+
+      if (totalPages <= 1) {
+        document.getElementById('pagination-container').style.display = 'none';
+        return;
+      }
+
+      document.getElementById('pagination-container').style.display = 'block';
+
+      const prevButton = document.createElement('button');
+      prevButton.innerHTML = '&laquo;';
+      prevButton.setAttribute('aria-label', 'Previous page');
+      prevButton.addEventListener('click', function() {
+        if (currentPage > 1) {
+          showPage(currentPage - 1, clients);
+        }
+      });
+      paginationContainer.appendChild(prevButton);
+
+      const isMobile = window.innerWidth <= 768;
+      const maxVisiblePages = isMobile ? 3 : 5;
+
+      let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+      let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+
+      if (endPage === totalPages) {
+        startPage = Math.max(1, endPage - maxVisiblePages + 1);
+      }
+
+      if (startPage > 1) {
+        const firstPageButton = document.createElement('button');
+        firstPageButton.textContent = '1';
+        firstPageButton.addEventListener('click', function() {
+          showPage(1, clients);
+        });
+        paginationContainer.appendChild(firstPageButton);
+
+        if (startPage > 2) {
+          const ellipsis = document.createElement('span');
+          ellipsis.textContent = '...';
+          ellipsis.style.margin = '0 5px';
+          paginationContainer.appendChild(ellipsis);
+        }
+      }
+
+      for (let i = startPage; i <= endPage; i++) {
+        const pageButton = document.createElement('button');
+        pageButton.textContent = i;
+        if (i === currentPage) {
+          pageButton.classList.add('active');
+        }
+        pageButton.addEventListener('click', function() {
+          showPage(i, clients);
+        });
+        paginationContainer.appendChild(pageButton);
+      }
+
+      if (endPage < totalPages) {
+        if (endPage < totalPages - 1) {
+          const ellipsis = document.createElement('span');
+          ellipsis.textContent = '...';
+          ellipsis.style.margin = '0 5px';
+          paginationContainer.appendChild(ellipsis);
+        }
+
+        const lastPageButton = document.createElement('button');
+        lastPageButton.textContent = totalPages;
+        lastPageButton.addEventListener('click', function() {
+          showPage(totalPages, clients);
+        });
+        paginationContainer.appendChild(lastPageButton);
+      }
+
+      const nextButton = document.createElement('button');
+      nextButton.innerHTML = '&raquo;';
+      nextButton.setAttribute('aria-label', 'Next page');
+      nextButton.addEventListener('click', function() {
+        if (currentPage < totalPages) {
+          showPage(currentPage + 1, clients);
+        }
+      });
+      paginationContainer.appendChild(nextButton);
+    }
+
+    function showPage(page, clients) {
+      currentPage = page;
+
+      allClients.forEach(card => {
+        card.style.display = 'none';
+      });
+
+      const startIndex = (page - 1) * itemsPerPage;
+      const endIndex = Math.min(startIndex + itemsPerPage, clients.length);
+
+      for (let i = startIndex; i < endIndex; i++) {
+        if (clients[i]) {
+          clients[i].style.display = '';
+        }
+      }
+
+      setupPagination(clients);
+
+      document.querySelector('.content-wrapper').scrollTop = 0;
+    }
+
+    function navigateToClient(clientId) {
+      window.location.href = `/clients/${clientId}`;
+    }
+
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(addSampleClients, 500);
+    });
+  </script>
+</head>

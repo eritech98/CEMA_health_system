@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Profile</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    :root {
+      --primary: #4a90e2;
+      --primary-dark: #3a7bc8;
+      --danger: #e74c3c;
+      --danger-dark: #c0392b;
+      --success: #2ecc71;
+      --text: #333;
+      --text-light: #666;
+      --border: #e1e1e1;
+      --bg-light: #f9fafb;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      --shadow-hover: 0 10px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    body {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      padding-top: 80px; /* Adjust padding to account for the fixed header */
+      overflow: hidden; /* Prevent scrolling */
+    }
+
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px;
+      background-color: white;
+      border-radius: 0; /* Remove border-radius for full-width header */
+      box-shadow: var(--shadow);
+      z-index: 1000; /* Ensure the header is above other content */
+    }
+
+    .header h1 {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .back-button {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: 6px;
+      transition: all 0.3s;
+    }
+
+    .back-button:hover {
+      background-color: var(--bg-light);
+      color: var(--primary);
+    }
+
+    .back-button svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .container {
+      max-width: 600px;
+      width: 100%;
+      margin: 0 auto;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      padding: 30px;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .card-header {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .card-header h2 {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .card-header p {
+      color: var(--text-light);
+      margin-top: 8px;
+      font-size: 14px;
+    }
+
+    .avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background-color: var(--bg-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 15px;
+      overflow: hidden;
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .profile-info {
+      margin-bottom: 15px;
+    }
+
+    .profile-info p {
+      margin: 5px 0;
+      color: var(--text-light);
+      font-size: 14px;
+    }
+
+    .enrolled-programs {
+      margin-top: 15px;
+    }
+
+    .enrolled-programs h2 {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+
+    .enrolled-programs ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .enrolled-programs li {
+      background-color: var(--bg-light);
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 10px;
+      color: var(--text);
+      font-size: 14px;
+    }
+
+    .no-programs {
+      text-align: center;
+      color: var(--text-light);
+      font-size: 14px;
+      margin-top: 20px;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 20px;
+      color: var(--text-light);
+      font-size: 14px;
+    }
+
+    .footer a {
+      color: var(--primary);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        padding: 15px;
+      }
+
+      .card {
+        padding: 20px;
+      }
+
+      body {
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <a href="/dashboard" class="back-button">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+      </svg>
+      Back to Dashboard
+    </a>
+
+    <div style="width: 100px;"></div> <!-- Spacer for centering -->
+  </header>
+
+  <div class="container">
+    <div class="card">
+      <div class="card-header">
+        <div class="avatar">
+          <img src="https://cdn-icons-png.flaticon.com/512/3675/3675740.png" alt="<%= client.full_name %>'s Avatar">
+        </div>
+        <h2><%= client.full_name %>'s Profile</h2>
+      </div>
+      <div class="profile-info">
+        <p>Email: <%= client.email %></p>
+        <p>Phone: <%= client.phone %></p>
+      </div>
+      <div class="enrolled-programs">
+        <h2>Enrolled Programs</h2>
+        <ul>
+          <% if (programs.length > 0) { %>
+            <% programs.forEach(p => { %>
+              <li><%= p.name %></li>
+            <% }) %>
+          <% } else { %>
+            <div class="no-programs">No programs enrolled.</div>
+          <% } %>
+        </ul>
+      </div>
+    </div>
+    <div class="footer">
+      <a href="/dashboard">Back to Dashboard</a>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<%- include('partials/confirmDoctor/confirmheader') %>
+<body>
+  <h1>Delete Your Account</h1>
+  <p>This will permanently delete:</p>
+  <ul>
+    <li>Your doctor account</li>
+    <li>All verification records</li>
+    <li>All password reset requests</li>
+  </ul>
+  
+  <form action="/doctor/delete" method="POST">
+    <button type="submit" onclick="return confirm('This cannot be undone. Are you absolutely sure?')">
+      Permanently Delete My Account
+    </button>
+    <a href="/dashboard">Cancel</a>
+  </form>
+  
+  <!-- For modern browsers that support DELETE method -->
+  <form id="deleteForm" method="POST">
+    <input type="hidden" name="_method" value="DELETE">
+  </form>
+  <script>
+    document.querySelector('form[method="POST"]').addEventListener('submit', function(e) {
+      e.preventDefault();
+      fetch('/doctor/delete', { method: 'DELETE' })
+        .then(response => {
+          if (response.ok) window.location.href = '/login';
+          else alert('Failed to delete account');
+        });
+    });
+  </script>
+</body>
+<%- include('partials/confirmDoctor/confirmFooter') %>
