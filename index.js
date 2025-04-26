@@ -32,7 +32,7 @@ import programs from "./Test_apis/programs.js";
 import signup_post from "./api_Routes/POST/signup_post.js";
 import transporter from "./Transporter/email.js";
 import login_post from "./api_Routes/POST/login_post.js";
-import programADD_post from "./api_Routes/POST/programADD_post.js";
+import programAdd_post from "./api_Routes/POST/programAdd_post.js";
 import clientRegister_post from "./api_Routes/POST/clientRegister_post.js";
 import ProgramsEnrol from "./api_Routes/POST/programsEnrol.js";
 import forgotPassword_post from "./api_Routes/POST/forgotPassword_post.js";
@@ -86,7 +86,7 @@ app.use("/api/programs-per-doctor", programs);
 //post Routes
 app.use("/signup-post", signup_post);
 app.use("/login", login_post);
-app.use("/programs/add", programADD_post);
+app.use("/programs/add", programAdd_post);
 app.use("/clients/register_post", clientRegister_post);
 app.use('/programs/enroll', ProgramsEnrol);
 app.use("/forgot-password", forgotPassword_post);
