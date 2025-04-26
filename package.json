@@ -1,0 +1,26 @@
+{
+  "name": "health-system",
+  "version": "1.0.0",
+  "description": "A health system for managing programs, clients, and profiles",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "author": "Erick Olando",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.5.0",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-session": "^1.18.1",
+    "nodemailer": "^6.10.1",
+    "pg": "^8.15.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
