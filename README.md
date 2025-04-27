@@ -135,7 +135,7 @@ med-portal-web-app/
 - **POST /login**: Handle doctor login.
   ![Login Post](images/login_post.png)
 - **GET /verify**: Verify the doctor's account.
-  ![Verify Account](images/verify_account.png)
+  ![Verify Account](public/verify.PNG)
 - **GET /logout**: Log out the doctor.
   ![Logout](images/logout.png)
 - **GET /forgot-password**: Display the forgot password form.
