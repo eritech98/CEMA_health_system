@@ -143,9 +143,9 @@ med-portal-web-app/
 - **POST /forgot-password**: Handle forgot password request.
   ![Forgot Password Post](public/forgotPasswordPost.PNG)
 - **GET /reset-password**: Display the reset password form.
-  ![Reset Password Form](public/forgotPassword.PNG)
+  ![Reset Password Form](public/New.PNG)
 - **POST /reset-password**: Handle password reset.
-  ![Reset Password Post](images/reset_password_post.png)
+  ![Reset Password Post](public/forgotPassword)
 
 ### Client Management Routes
 
