@@ -150,9 +150,9 @@ med-portal-web-app/
 ### Client Management Routes
 
 - **GET /clients/register**: Display the client registration form.
-  ![Client Register Form](images/client_register_form.png)
+  ![Client Register Form](public/RegisterGet.PNG)
 - **POST /clients/register_post**: Handle client registration.
-  ![Client Register Post](images/client_register_post.png)
+  ![Client Register Post](public/regpost.PNG)
 - **GET /clients**: Display all clients.
   ![Clients List](public/clients.PNG)
 - **GET /clients/1**: Display specific client.
