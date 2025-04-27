@@ -26,7 +26,7 @@ forgotPassword_post.post("/", async (req, res) => {
     );
 
     // Send email
-    const resetLink = `http://localhost:${process.env.PORT}/reset-password/${token}`;
+    const resetLink = `https://medportal.up.railway.app/reset-password/${token}`;
     await transporter.sendMail({
       to: email,
       subject: "Password Reset Request",
