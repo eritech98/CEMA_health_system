@@ -129,19 +129,19 @@ med-portal-web-app/
 - **GET /signup**: Display the signup form.
   ![signup](public/signup.PNG)
 - **POST /signup-post**: Handle doctor registration.
-  ![Signup Post](images/signup_post.png)
+  ![Signup Post](public/signupPost.PNG)
 - **GET /login**: Display the login form.
   ![Login Form](public/login.PNG)
 - **POST /login**: Handle doctor login.
-  ![Login Post](images/login_post.png)
+  ![Login Post](public/loginPost.PNG)
 - **GET /verify**: Verify the doctor's account.
   ![Verify Account](public/verify.PNG)
 - **GET /logout**: Log out the doctor.
-  ![Logout](images/logout.png)
+  ![Logout](public/logoutPost.PNG)
 - **GET /forgot-password**: Display the forgot password form.
   ![Forgot Password Form](public/forgotPassword.PNG)
 - **POST /forgot-password**: Handle forgot password request.
-  ![Forgot Password Post](images/forgot_password_post.png)
+  ![Forgot Password Post](public/forgotPasswordPost.PNG)
 - **GET /reset-password**: Display the reset password form.
   ![Reset Password Form](public/forgotPassword.PNG)
 - **POST /reset-password**: Handle password reset.
@@ -154,9 +154,11 @@ med-portal-web-app/
 - **POST /clients/register_post**: Handle client registration.
   ![Client Register Post](images/client_register_post.png)
 - **GET /clients**: Display all clients.
-  ![Clients List](images/clients_list.png)
+  ![Clients List](public/clients.PNG)
+- **GET /clients/1**: Display specific client.
+  ![specific client ](public/client_specific.PNG)
 - **DELETE /clients/:id**: Delete a client by ID.
-  ![Delete Client](public/delete.PNG)
+  ![Delete Client](public/deletePost.PNG)
 
 ### Program Management Routes
 
@@ -177,7 +179,7 @@ med-portal-web-app/
 ### Test APIs
 
 - **GET /api/clients**: Get all clients (test route).
-  ![Test Clients](public/clients.PNG)
+  ![Test Clients]()
 - **GET /api/users**: Get all users (test route).
   ![Test Users](images/test_users.png)
 - **GET /api/programs-per-doctor**: Get programs per doctor (test route).
