@@ -179,7 +179,7 @@ med-portal-web-app/
 ### Test APIs
 > **N/B:** These are a few test routes that query the live database.
 > 
-- **GET /api/clients**: [Test Clients](https://medportal.up.railway.app/api/clients)
+- **GET /api/clients**: [Test Clients](https://medportal.up.railway.app/api/clients/9)
 - **GET /api/users**: [Test Users](https://medportal.up.railway.app/api/users)
 - **GET /api/programs-per-doctor**: [Test Programs](https://medportal.up.railway.app/api/programs-per-doctor)
 
