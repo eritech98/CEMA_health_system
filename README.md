@@ -243,3 +243,16 @@ nodemon index.js
 
 The Med portal Web App is a fully functional web application designed to streamline the management of clients and programs for doctors. It is built with modern technologies and follows best practices for security and usability. This project can serve as a strong foundation for more advanced healthcare management systems.
 
+
+# How to Use the Health System App
+
+## Step 1: Add a Program
+1. Add a program.
+
+## Step 2: Register a Client
+1. Register a client.
+
+## Step 3: Enroll a Client to that Program
+1. Enroll a client to that program.
+
+
