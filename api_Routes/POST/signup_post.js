@@ -32,7 +32,7 @@ signup_post.post('/', async (req, res) => {
     await transporter.sendMail({
       to: email,
       subject: 'Verify your account',
-      html: `<a href="https://medportal.up.railway.app/:${process.env.PORT}/verify/${token}">Click to verify</a>`,
+      html: `<a href="https://medportal.up.railway.app/${process.env.PORT}/verify/${token}">Click to verify</a>`,
     });
 
     res.send('Signup successful. Please verify your email.');
