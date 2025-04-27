@@ -165,11 +165,11 @@ med-portal-web-app/
 - **GET /programs/add**: Display the program addition form.
   ![Add Program Form](public/AddProgram.PNG)
 - **POST /programs/add**: Handle adding a new program.
-  ![Add Program Post](images/add_program_post.png)
+  ![Add Program Post](public/CreateProgram.PNG)
 - **GET /programs/enroll**: Display the program enrollment form.
   ![Enroll Program Form](public/Enrol.PNG)
 - **POST /programs/enroll**: Handle enrolling a client in a program.
-  ![Enroll Program Post](images/enroll_program_post.png)
+  ![Enroll Program Post](public/EnrolPost.PNG)
 
 ### Dashboard Routes
 
