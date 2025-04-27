@@ -139,7 +139,7 @@ med-portal-web-app/
 - **GET /logout**: Log out the doctor.
   ![Logout](images/logout.png)
 - **GET /forgot-password**: Display the forgot password form.
-  ![Forgot Password Form](public/)
+  ![Forgot Password Form](public/forgotPassword.PNG)
 - **POST /forgot-password**: Handle forgot password request.
   ![Forgot Password Post](images/forgot_password_post.png)
 - **GET /reset-password**: Display the reset password form.
@@ -156,28 +156,28 @@ med-portal-web-app/
 - **GET /clients**: Display all clients.
   ![Clients List](images/clients_list.png)
 - **DELETE /clients/:id**: Delete a client by ID.
-  ![Delete Client](images/delete_client.png)
+  ![Delete Client](public/delete.PNG)
 
 ### Program Management Routes
 
 - **GET /programs/add**: Display the program addition form.
-  ![Add Program Form](images/add_program_form.png)
+  ![Add Program Form](public/AddProgram.PNG)
 - **POST /programs/add**: Handle adding a new program.
   ![Add Program Post](images/add_program_post.png)
 - **GET /programs/enroll**: Display the program enrollment form.
-  ![Enroll Program Form](images/enroll_program_form.png)
+  ![Enroll Program Form](public/Enrol.PNG)
 - **POST /programs/enroll**: Handle enrolling a client in a program.
   ![Enroll Program Post](images/enroll_program_post.png)
 
 ### Dashboard Routes
 
 - **GET /dashboard**: Display the dashboard with client cards and search functionality.
-  ![Dashboard](images/dashboard.png)
+  ![Dashboard](public/Dashboard.PNG)
 
 ### Test APIs
 
 - **GET /api/clients**: Get all clients (test route).
-  ![Test Clients](images/test_clients.png)
+  ![Test Clients](public/clients.PNG)
 - **GET /api/users**: Get all users (test route).
   ![Test Users](images/test_users.png)
 - **GET /api/programs-per-doctor**: Get programs per doctor (test route).
