@@ -131,7 +131,7 @@ med-portal-web-app/
 - **POST /signup-post**: Handle doctor registration.
   ![Signup Post](images/signup_post.png)
 - **GET /login**: Display the login form.
-  ![Login Form](images/login_form.png)
+  ![Login Form](public/login.PNG)
 - **POST /login**: Handle doctor login.
   ![Login Post](images/login_post.png)
 - **GET /verify**: Verify the doctor's account.
