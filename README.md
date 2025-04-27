@@ -177,13 +177,12 @@ med-portal-web-app/
   ![Dashboard](public/Dashboard.PNG)
 
 ### Test APIs
+> **N/B:** These are a few test routes that query the live database.
+> 
+- **GET /api/clients**: [Test Clients](https://medportal.up.railway.app/api/clients)
+- **GET /api/users**: [Test Users](https://medportal.up.railway.app/api/users)
+- **GET /api/programs-per-doctor**: [Test Programs](https://medportal.up.railway.app/api/programs-per-doctor)
 
-- **GET /api/clients**: Get all clients (test route).
-  ![Test Clients]()
-- **GET /api/users**: Get all users (test route).
-  ![Test Users](images/test_users.png)
-- **GET /api/programs-per-doctor**: Get programs per doctor (test route).
-  ![Test Programs](images/test_programs.png)
 
 ## Database Configuration
 
