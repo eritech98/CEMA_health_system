@@ -244,15 +244,27 @@ nodemon index.js
 The Med portal Web App is a fully functional web application designed to streamline the management of clients and programs for doctors. It is built with modern technologies and follows best practices for security and usability. This project can serve as a strong foundation for more advanced healthcare management systems.
 
 
-# How to Use the Health System App
+# How to Use the Web Application
 
-## Step 1: Add a Program
-1. Add a program.
+## Step 1: Signup
+- To use the application, first, sign up as a user by providing your details (email, password, etc.).
 
-## Step 2: Register a Client
-1. Register a client.
+## Step 2: Add a Program
+- Once you're signed in, go to the "Add Program" section.
+- Enter the details of the program you want to create.
+- Click "Add Program" to save the new program.
 
-## Step 3: Enroll a Client to that Program
-1. Enroll a client to that program.
+## Step 3: Register a Client
+- After adding a program, go to the "Register Client" section.
+- Fill in the client details such as name, email, and phone number.
+- Click "Register Client" to save the new client.
+
+## Step 4: Enroll a Client to a Program
+- After registering a client, go to the "Enroll Client" section.
+- Select the client and the program you want to enroll them in.
+- Click "Enroll" to add the client to the selected program.
+
+That's it! You can now manage your clients and programs in the web application.
+#
 
 
