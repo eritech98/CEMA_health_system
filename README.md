@@ -139,11 +139,11 @@ med-portal-web-app/
 - **GET /logout**: Log out the doctor.
   ![Logout](images/logout.png)
 - **GET /forgot-password**: Display the forgot password form.
-  ![Forgot Password Form](public/forgotPassword.PNG)
+  ![Forgot Password Form](public/)
 - **POST /forgot-password**: Handle forgot password request.
   ![Forgot Password Post](images/forgot_password_post.png)
 - **GET /reset-password**: Display the reset password form.
-  ![Reset Password Form](images/reset_password_form.png)
+  ![Reset Password Form](public/forgotPassword.PNG)
 - **POST /reset-password**: Handle password reset.
   ![Reset Password Post](images/reset_password_post.png)
 
