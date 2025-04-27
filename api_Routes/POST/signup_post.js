@@ -27,13 +27,14 @@ signup_post.post('/', async (req, res) => {
       'INSERT INTO email_verifications (doctor_id, token) VALUES ($1, $2)',
       [doctor.rows[0].id, token]
     );
+    
+const verificationUrl = `https://medportal.up.railway.app:${process.env.PORT}/verify/${token}`;
 
-    // Send the verification email
-    await transporter.sendMail({
-      to: email,
-      subject: 'Verify your account',
-      html: `<a href="https://medportal.up.railway.app:${process.env.PORT}/verify/${token}">Click to verify</a>`,
-    });
+await transporter.sendMail({
+  to: email,
+  subject: 'Verify your account',
+  html: `<a href="${verificationUrl}">Click to verify</a>`,
+});
 
     res.send('Signup successful. Please verify your email.');
   } catch (error) {
