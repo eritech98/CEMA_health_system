@@ -127,7 +127,7 @@ med-portal-web-app/
 ### Authentication
 
 - **GET /signup**: Display the signup form.
-  ![Signup Form](images/signup_form.png)
+  ![Signup Form](/images/signup.PNG)
 - **POST /signup-post**: Handle doctor registration.
   ![Signup Post](images/signup_post.png)
 - **GET /login**: Display the login form.
