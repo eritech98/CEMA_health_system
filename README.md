@@ -227,7 +227,7 @@ let transporter = nodemailer.createTransport({
 
 ### Clone the Repository
 ```bash
-git clone https://github.com/your-repo/CEMA_health_system.git
+git clone https://github.com/eritech98/CEMA_health_system.git
 ```
 
 ### Install Dependencies
